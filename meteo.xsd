@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified">
+    
+    <!-- définition élément racine -->
+    <xs:element name="meteo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="mesure" type="MesureType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- type pour mesure -->
+    <xs:complexType name="MesureType">
+        <xs:sequence>
+            <xs:element name="ville" type="VilleType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="date" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <!-- autorise formes: 2006-1-1 ou 2006-01-01 etc. -->
+                    <xs:pattern value="\d{4}-\d{1,2}-\d{1,2}"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    
+    <!-- type pour ville -->
+    <xs:complexType name="VilleType">
+        <xs:complexContent>
+            <xs:restriction base="xs:anyType"/>
+        </xs:complexContent>
+        <xs:attribute name="nom" type="xs:string" use="required"/>
+        <xs:attribute name="temperature" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:integer">
+                    <!-- températures raisonnables, optionnel -->
+                    <xs:minInclusive value="-50"/>
+                    <xs:maxInclusive value="70"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    
+</xs:schema>
