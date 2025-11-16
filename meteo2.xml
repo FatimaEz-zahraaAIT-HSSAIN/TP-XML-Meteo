@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE meteo SYSTEM "meteo.dtd">
-<meteo>
+<meteo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="meteo.xsd">
     <mesure date="2006-1-1">
         <ville nom="Casa" temperature="22"/> 
         <ville nom="Rabat" temperature="20"/>
